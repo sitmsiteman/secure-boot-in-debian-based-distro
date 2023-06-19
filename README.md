@@ -21,7 +21,7 @@ LATEST_KERNEL=`ls -lt /path/to/boot/vmlinuz-* | tr -s ' ' | cut -d' ' -f9 | awk 
 IS_IT_SIGNED=$(echo $LATEST_KERNEL | rev | cut -d '.' -f 1 | rev)
 
 if [ $IS_IT_SIGNED = "backup" ]; then
-	echo "Latest kernel is already Signed"
+	echo "Already Signed"
 else
 	sudo mv $LATEST_KERNEL $LATEST_KERNEL.backup
   sudo sbsign --key /path/to/MOK.priv --cert /path/to/MOK.pem $LATEST_KERNEL.backup --output $LATEST_KERNEL
